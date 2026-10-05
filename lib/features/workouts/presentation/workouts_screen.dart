@@ -126,6 +126,129 @@ class WorkoutsScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 24),
+
+              // Заголовок My Plans
+              const Text(
+                'MY PLANS',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
+              ),
+              const SizedBox(height: 16),
+
+              // Горизонтальный скролл карточек планов
+              const SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                clipBehavior: Clip.none,
+                child: Row(
+                  children: [
+                    _PlanCard(
+                      title: 'BEGINNER SPLIT',
+                      duration: '30 min',
+                      difficulty: '2/3',
+                      exercises: '12 exercises',
+                    ),
+                    SizedBox(width: 14),
+                    _PlanCard(
+                      title: 'SK RUNNER',
+                      duration: '30 min',
+                      difficulty: '2/3',
+                      exercises: '18 exercises',
+                    ),
+                    SizedBox(width: 14),
+                    _PlanCard(
+                      title: 'ABS & CORE',
+                      duration: '20 min',
+                      difficulty: '1/3',
+                      exercises: '10 exercises',
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 24),
+
+              // Заголовок Next Scheduled Workout
+              const Text(
+                'NEXT SCHEDULED WORKOUT',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
+              ),
+              const SizedBox(height: 16),
+
+              // Карточка Next Scheduled Workout во всю ширину
+              Container(
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(
+                    color: Colors.black.withValues(alpha: 0.06),
+                    width: 1,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.04),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    // Миниатюра с иконкой
+                    Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFF0EBE1),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Icon(
+                        Icons.fitness_center,
+                        color: Color(0xFF7A6843),
+                        size: 24,
+                      ),
+                    ),
+                    const SizedBox(width: 14),
+                    // Название и детали
+                    const Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'BEGINNER SPLIT',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.black87,
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            '2 min | Difficulty: 3 min',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.black54,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // Стрелка перехода
+                    const Icon(
+                      Icons.chevron_right,
+                      color: Colors.black38,
+                      size: 24,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 32),
             ],
           ),
         ),
@@ -182,6 +305,84 @@ class _CategoryCard extends StatelessWidget {
                 letterSpacing: 0.5,
                 color: Colors.black87,
               ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _PlanCard extends StatelessWidget {
+  final String title;
+  final String duration;
+  final String difficulty;
+  final String exercises;
+
+  const _PlanCard({
+    required this.title,
+    required this.duration,
+    required this.difficulty,
+    required this.exercises,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 200,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: Colors.black.withValues(alpha: 0.06),
+          width: 1,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.04),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Серая заглушка под картинку со скруглением 12px
+          Container(
+            height: 110,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: const Color(0xFFE8E8EE),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: const Center(
+              child: Icon(
+                Icons.image_outlined,
+                color: Colors.black26,
+                size: 36,
+              ),
+            ),
+          ),
+          const SizedBox(height: 12),
+          Text(
+            title,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+              color: Colors.black87,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            '$duration | Difficulty: $difficulty | $exercises',
+            style: const TextStyle(
+              fontSize: 11,
+              color: Colors.black54,
+              height: 1.3,
             ),
           ),
         ],
