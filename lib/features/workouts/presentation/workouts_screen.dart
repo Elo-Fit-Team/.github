@@ -81,9 +81,110 @@ class WorkoutsScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
+
+              // Заголовок Workout Categories
+              const Text(
+                'WORKOUT CATEGORIES',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
+              ),
+              const SizedBox(height: 16),
+
+              // Горизонтальный ряд категорий
+              const Row(
+                children: [
+                  Expanded(
+                    child: _CategoryCard(
+                      title: 'STRENGTH',
+                      icon: Icons.fitness_center,
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  Expanded(
+                    child: _CategoryCard(
+                      title: 'CARDIO',
+                      icon: Icons.favorite_border,
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  Expanded(
+                    child: _CategoryCard(
+                      title: 'FLEXIBILITY',
+                      icon: Icons.self_improvement,
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  Expanded(
+                    child: _CategoryCard(
+                      title: 'OUTDOOR',
+                      icon: Icons.directions_run,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 24),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _CategoryCard extends StatelessWidget {
+  final String title;
+  final IconData icon;
+
+  const _CategoryCard({
+    required this.title,
+    required this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 4),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: Colors.black.withValues(alpha: 0.06),
+          width: 1,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.04),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            icon,
+            size: 26,
+            color: Colors.black87,
+          ),
+          const SizedBox(height: 8),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              title,
+              maxLines: 1,
+              style: const TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 0.5,
+                color: Colors.black87,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
