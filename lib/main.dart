@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'features/workouts/presentation/workouts_screen.dart';
+import 'features/navigation/presentation/main_nav_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFF8F8FA),
         useMaterial3: true,
       ),
-      home: const WorkoutsScreen(),
+      home: const MainNavScreen(),
     );
   }
 }
+
