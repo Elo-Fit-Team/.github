@@ -203,7 +203,7 @@ class HubScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(24),
             gradient: RadialGradient(
               colors: [
-                const Color(0xFFC5A869).withValues(alpha: 0.18),
+                const Color(0xFFC5A869).withOpacity(0.18),
                 Colors.transparent,
               ],
               radius: 0.75,
@@ -221,12 +221,12 @@ class HubScreen extends StatelessWidget {
                 color: const Color(0xFF2C3440),
                 borderRadius: BorderRadius.circular(24),
                 border: Border.all(
-                  color: const Color(0xFFC5A869).withValues(alpha: 0.35),
+                  color: const Color(0xFFC5A869).withOpacity(0.35),
                   width: 2,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF7A6843).withValues(alpha: 0.25),
+                    color: const Color(0xFF7A6843).withOpacity(0.25),
                     blurRadius: 20,
                     offset: const Offset(0, 8),
                   ),
@@ -247,7 +247,7 @@ class HubScreen extends StatelessWidget {
               height: 12,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.elliptical(110, 12)),
-                color: const Color(0xFFC5A869).withValues(alpha: 0.3),
+                color: const Color(0xFFC5A869).withOpacity(0.3),
               ),
             ),
           ],
@@ -305,12 +305,12 @@ class HubScreen extends StatelessWidget {
         color: const Color(0xFF2C3440),
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-          color: Colors.white.withValues(alpha: 0.15),
+          color: Colors.white.withOpacity(0.15),
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
+            color: Colors.black.withOpacity(0.1),
             blurRadius: 8,
             offset: const Offset(0, 3),
           ),
@@ -387,7 +387,7 @@ class HubScreen extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF7A6843).withValues(alpha: 0.3),
+            color: const Color(0xFF7A6843).withOpacity(0.3),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -421,12 +421,12 @@ class HubScreen extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(18),
         border: Border.all(
-          color: Colors.black.withValues(alpha: 0.05),
+          color: Colors.black.withOpacity(0.05),
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.03),
+            color: Colors.black.withOpacity(0.03),
             blurRadius: 10,
             offset: const Offset(0, 3),
           ),
@@ -460,7 +460,7 @@ class HubScreen extends StatelessWidget {
             height: 50,
             width: 1,
             margin: const EdgeInsets.symmetric(horizontal: 14),
-            color: Colors.black.withValues(alpha: 0.06),
+            color: Colors.black.withOpacity(0.06),
           ),
           // Current ELO Card
           Expanded(
@@ -588,7 +588,7 @@ class HubScreen extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(14),
             border: Border.all(
-              color: Colors.black.withValues(alpha: 0.05),
+              color: Colors.black.withOpacity(0.05),
               width: 1,
             ),
           ),
@@ -649,7 +649,7 @@ class HubScreen extends StatelessWidget {
         color: active ? const Color(0xFF2C3440) : Colors.white,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: active ? Colors.transparent : Colors.black.withValues(alpha: 0.06),
+          color: active ? Colors.transparent : Colors.black.withOpacity(0.06),
         ),
       ),
       child: Text(
@@ -683,12 +683,12 @@ class _ChallengeCard extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: Colors.black.withValues(alpha: 0.05),
+          color: Colors.black.withOpacity(0.05),
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.03),
+            color: Colors.black.withOpacity(0.03),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
