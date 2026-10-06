@@ -149,6 +149,7 @@ class WorkoutsScreen extends StatelessWidget {
                       duration: '30 min',
                       difficulty: '2/3',
                       exercises: '12 exercises',
+                      imagePath: 'assets/images/beginner_split.jpg',
                     ),
                     SizedBox(width: 14),
                     _PlanCard(
@@ -156,6 +157,7 @@ class WorkoutsScreen extends StatelessWidget {
                       duration: '30 min',
                       difficulty: '2/3',
                       exercises: '18 exercises',
+                      imagePath: 'assets/images/sk_runner.jpg',
                     ),
                     SizedBox(width: 14),
                     _PlanCard(
@@ -163,6 +165,7 @@ class WorkoutsScreen extends StatelessWidget {
                       duration: '20 min',
                       difficulty: '1/3',
                       exercises: '10 exercises',
+                      imagePath: 'assets/images/abs_core.jpg',
                     ),
                   ],
                 ),
@@ -318,12 +321,14 @@ class _PlanCard extends StatelessWidget {
   final String duration;
   final String difficulty;
   final String exercises;
+  final String? imagePath;
 
   const _PlanCard({
     required this.title,
     required this.duration,
     required this.difficulty,
     required this.exercises,
+    this.imagePath,
   });
 
   @override
@@ -349,20 +354,37 @@ class _PlanCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Серая заглушка под картинку со скруглением 12px
-          Container(
-            height: 110,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: const Color(0xFFE8E8EE),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: const Center(
-              child: Icon(
-                Icons.image_outlined,
-                color: Colors.black26,
-                size: 36,
-              ),
+          // Превью план-карточки
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: SizedBox(
+              height: 110,
+              width: double.infinity,
+              child: imagePath != null
+                  ? Image.asset(
+                      imagePath!,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => Container(
+                        color: const Color(0xFFE8E8EE),
+                        child: const Center(
+                          child: Icon(
+                            Icons.fitness_center,
+                            color: Colors.black26,
+                            size: 36,
+                          ),
+                        ),
+                      ),
+                    )
+                  : Container(
+                      color: const Color(0xFFE8E8EE),
+                      child: const Center(
+                        child: Icon(
+                          Icons.image_outlined,
+                          color: Colors.black26,
+                          size: 36,
+                        ),
+                      ),
+                    ),
             ),
           ),
           const SizedBox(height: 12),
