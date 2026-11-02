@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'core/network/api_client.dart';
 import 'core/storage/storage_service.dart';
@@ -8,7 +8,6 @@ import 'providers/workout_provider.dart';
 import 'providers/leaderboard_provider.dart';
 import 'providers/community_provider.dart';
 import 'features/navigation/presentation/main_nav_screen.dart';
-import 'features/auth/presentation/login_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -61,14 +60,7 @@ class EloFitApp extends StatelessWidget {
           scrolledUnderElevation: 0,
         ),
       ),
-      home: Consumer<AuthProvider>(
-        builder: (context, auth, _) {
-          if (auth.isAuthenticated) {
-            return const MainNavScreen();
-          }
-          return const LoginScreen();
-        },
-      ),
+      home: const MainNavScreen(),
     );
   }
 }

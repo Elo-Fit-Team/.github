@@ -1,4 +1,4 @@
-﻿import 'dart:io';
+import 'dart:io';
 import 'package:flutter/foundation.dart';
 
 class ApiConstants {
@@ -14,6 +14,10 @@ class ApiConstants {
   }
 
   // Auth endpoints
+  static const String authLogin = 'auth/login/';
+  static const String authRegister = 'auth/register/';
+  static const String authPasswordReset = 'auth/password-reset/';
+  static const String adminUsers = 'admin/users/';
   static const String authFirebase = 'auth/firebase/';
   static const String authTokenRefresh = 'auth/token/refresh/';
   static const String authLogout = 'auth/logout/';
