@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EloFit — Геймифицированная фитнес-платформа с ELO-рейтингом</title>
+  <meta name="description" content="EloFit — первая фитнес-платформа, объединяющая реальные тренировки, соревновательные лиги и RPG-прокачку персонажа с честным ELO-рейтингом.">
+  <meta name="keywords" content="фитнес, тренировки, геймификация, elofit, ELO рейтинг, прокачка, спорт, бодибилдинг, кроссфит">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="EloFit — Прокачивай тело как персонажа в RPG">
+  <meta property="og:description" content="Зарабатывай ELO, соревнуйся в лигах с друзьями, открывай достижения и отслеживай реальный прогресс.">
+  
+  <link rel="icon" type="image/png" href="assets/images/beginner_split.jpg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="nav-wrapper">
+      <a href="#hero" class="brand" id="nav-brand">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">Elo<span>Fit</span></div>
+        <span class="brand-badge">BETA</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#features" id="nav-features">Возможности</a></li>
+        <li><a href="#plans" id="nav-plans">Программы</a></li>
+        <li><a href="#gamification" id="nav-gamification">Геймификация</a></li>
+        <li><a href="#register" id="nav-register-link">Ранний доступ</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="admin.html" class="btn btn-admin" id="btn-header-admin" title="Панель администратора (база регистраций)">
+          📊 База заявок
+        </a>
+        <a href="#register" class="btn btn-primary" id="btn-nav-join">
+          Присоединиться 🚀
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-pill">
+          <span class="pulse-dot"></span>
+          <span>Сезон 1 • Открыт закрытый бета-тест</span>
+        </div>
+
+        <h1 class="hero-title">
+          Прокачивай тело <br>
+          <span class="gradient-text">как игрового персонажа</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Преврати монотонные тренировки в захватывающий RPG-квест. Зарабатывай ELO-очки за каждый подход, побеждай в дуэлях, открывай легендарные скины и отслеживай реальный рост силы.
+        </p>
+
+        <div class="hero-cta-box">
+          <a href="#register" class="btn btn-primary btn-submit-hero" id="btn-hero-cta">
+            Получить ранний доступ 🔥
+          </a>
+          <a href="#features" class="btn btn-secondary" id="btn-hero-learn">
+            Узнать подробнее ↓
+          </a>
+        </div>
+
+        <div class="hero-users-tag">
+          <span class="hero-pill" style="margin: 0; padding: 6px 14px; font-size: 0.84rem;">
+            <span class="pulse-dot"></span>
+            <span>Заявок в лиге: <strong id="hero-live-counter">0</strong></span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Hero Visual Phone Card -->
+      <div class="hero-visual">
+        <div class="phone-card">
+          <div class="phone-screen-header">
+            <div class="athlete-profile">
+              <div class="athlete-avatar">⚔️</div>
+              <div class="athlete-meta">
+                <h4>Титан Лиги</h4>
+                <span>Уровень 14 • В сети</span>
+              </div>
+            </div>
+            <div class="elo-tag">
+              <div class="elo-label">Рейтинг</div>
+              <div class="elo-value">1,840 ELO</div>
+            </div>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="phone-stats-grid">
+            <div class="stat-pill str">
+              <div class="val">88</div>
+              <div class="lbl">Сила</div>
+            </div>
+            <div class="stat-pill agi">
+              <div class="val">76</div>
+              <div class="lbl">Ловкость</div>
+            </div>
+            <div class="stat-pill sta">
+              <div class="val">92</div>
+              <div class="lbl">Выносливость</div>
+            </div>
+          </div>
+
+          <!-- Daily Quest -->
+          <div class="phone-quest-card">
+            <div class="quest-header">
+              <span>ЕЖЕДНЕВНЫЙ КВЕСТ</span>
+              <span style="color: var(--accent-gold-bright);">+50 ELO</span>
+            </div>
+            <div class="quest-title">Жим лёжа: 4 подхода x 10 повт.</div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 75%;"></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top: 6px; font-size: 0.75rem; color: var(--text-muted);">
+              <span>Выполнено: 3/4 подходов</span>
+              <span>75%</span>
+            </div>
+          </div>
+
+          <!-- Quick Reward -->
+          <div style="background: rgba(245, 158, 11, 0.12); border: 1px dashed var(--accent-gold); border-radius: 12px; padding: 10px; font-size: 0.8rem; text-align: center; color: var(--accent-gold-bright); margin-bottom: 12px;">
+            🏆 Сезонный бонус: +15% XP на этой неделе
+          </div>
+
+          <div class="phone-nav-dock">
+            <span class="active">🏠</span>
+            <span>⚡</span>
+            <span>🏆</span>
+            <span>👤</span>
+          </div>
+        </div>
+
+        <!-- Floating Badges -->
+        <div class="floating-badge fb-1">
+          <span>🥇</span>
+          <div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Сезонный бой</div>
+            <div style="color: var(--accent-gold-bright);">Победа в Дуэли (+35 ELO)</div>
+          </div>
+        </div>
+
+        <div class="floating-badge fb-2">
+          <span>🔥</span>
+          <div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Стрик тренировок</div>
+            <div>12 дней подряд!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section-padding" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Преимущества</span>
+        <h2 class="section-title">Почему EloFit меняет правила фитнеса</h2>
+        <p class="section-subtitle">Обычные фитнес-трекеры показывают скучные цифры. EloFit превращает каждую каплю пота в прогресс твоего цифрового аватара.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card gold">
+          <div class="feature-icon-wrapper">⚔️</div>
+          <h3>Рейтинговая система ELO</h3>
+          <p>Никаких фейковых наград. Ваш рейтинг пересчитывается математически точно по аналогии с шахматами и киберспортом на основе реального тоннажа и интенсивности.</p>
+        </div>
+
+        <div class="feature-card blue">
+          <div class="feature-icon-wrapper">🛡️</div>
+          <h3>RPG-прокачка атрибутов</h3>
+          <p>Каждое упражнение распределяет опыт в Силу, Ловкость и Выносливость. Качайте персонажа в соответствии со своей реальной формой.</p>
+        </div>
+
+        <div class="feature-card purple">
+          <div class="feature-icon-wrapper">🏆</div>
+          <h3>Соревновательные Лиги</h3>
+          <p>Бросайте вызовы друзьям или соревнуйтесь в еженедельных таблицах лидеров своего зала, города или страны за уникальные трофеи.</p>
+        </div>
+
+        <div class="feature-card cyan">
+          <div class="feature-icon-wrapper">📱</div>
+          <h3>Умные тренировочные сплиты</h3>
+          <p>Индивидуальные программы с автоподбором рабочих весов, таймерами отдыха между подходами и видео-инструкциями правильной техники.</p>
+        </div>
+
+        <div class="feature-card emerald">
+          <div class="feature-icon-wrapper">📈</div>
+          <h3>Продвинутая аналитика</h3>
+          <p>Отслеживайте объём поднятых килограммов, среднюю ЧСС, прогресс в рабочих весах и динамику восстановления без лишних блокнотов.</p>
+        </div>
+
+        <div class="feature-card rose">
+          <div class="feature-icon-wrapper">👥</div>
+          <h3>Комьюнити и фото-пруфы</h3>
+          <p>Делитесь результатами, находите тренировочных напарников и подтверждайте личные рекорды в дружелюбном закрытом сообществе.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Workout Plans Section (Using Actual Images from Repository) -->
+  <section class="section-padding" id="plans" style="background: rgba(10, 15, 26, 0.5);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Программы</span>
+        <h2 class="section-title">Готовые тренировочные планы</h2>
+        <p class="section-subtitle">Протестированы тренерами и готовы к запуску с первого дня.</p>
+      </div>
+
+      <div class="plans-grid">
+        <!-- Plan 1 -->
+        <div class="plan-card">
+          <div class="plan-cover-wrapper">
+            <img src="assets/images/beginner_split.jpg" alt="Beginner Split" class="plan-cover" loading="lazy">
+            <span class="plan-difficulty-pill easy">Базовый</span>
+          </div>
+          <div class="plan-body">
+            <h3>Beginner Split (Старт)</h3>
+            <p>Идеальный 3-дневный сплит для постановки техники, адаптации связок и первого мощного прироста силы и ELO.</p>
+            <div class="plan-meta">
+              <span>Длительность: <strong>6 недель</strong></span>
+              <span>Частота: <strong>3 дня/нед</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plan 2 -->
+        <div class="plan-card">
+          <div class="plan-cover-wrapper">
+            <img src="assets/images/abs_core.jpg" alt="ABS Core" class="plan-cover" loading="lazy">
+            <span class="plan-difficulty-pill medium">Средний</span>
+          </div>
+          <div class="plan-body">
+            <h3>ABS & Core Armor</h3>
+            <p>Ударная изометрическая и динамическая программа для укрепления мышц кора, рельефа пресса и защиты позвоночника.</p>
+            <div class="plan-meta">
+              <span>Длительность: <strong>4 недели</strong></span>
+              <span>Частота: <strong>4 дня/нед</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plan 3 -->
+        <div class="plan-card">
+          <div class="plan-cover-wrapper">
+            <img src="assets/images/sk_runner.jpg" alt="SK Runner" class="plan-cover" loading="lazy">
+            <span class="plan-difficulty-pill hard">Продвинутый</span>
+          </div>
+          <div class="plan-body">
+            <h3>SK Runner Endurance</h3>
+            <p>Интервальный беговой протокол для развития максимального МПК, прокачки сердечно-сосудистой системы и сжигания жира.</p>
+            <div class="plan-meta">
+              <span>Длительность: <strong>8 недель</strong></span>
+              <span>Частота: <strong>5 дней/нед</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGISTRATION SECTION (CORE FUNCTIONALITY FOR TRACKING USERS) -->
+  <section class="registration-section" id="register">
+    <div class="container">
+      <div class="registration-card">
+        <div class="registration-grid">
+          <div class="reg-info">
+            <span class="section-tag">Закрытая регистрация</span>
+            <h2>Займи своё место в Лиге Первопроходцев</h2>
+            <p>
+              Зарегистрируйтесь, чтобы забронировать статус <strong>Founder</strong> и получить приоритетный доступ к закрытому тестированию и закрытым лигам.
+            </p>
+            <ul class="reg-benefits">
+              <li>
+                <span class="check">✓</span>
+                <span>Мгновенный доступ к закрытому бета-тесту приложения</span>
+              </li>
+              <li>
+                <span class="check">✓</span>
+                <span>Стартовый бонус: +250 приветственных ELO-очков</span>
+              </li>
+              <li>
+                <span class="check">✓</span>
+                <span>Прямой канал связи с основателями и разработчиками</span>
+              </li>
+              <li>
+                <span class="check">✓</span>
+                <span>Бесплатные персональные планы тренировок</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Registration Form Form Box -->
+          <div class="reg-form-box">
+            <form id="registration-form" novalidate>
+              <div class="form-group">
+                <label for="reg-name">Ваше имя или никнейм *</label>
+                <input type="text" id="reg-name" class="form-control" placeholder="Например: Александр (Titan)" required>
+              </div>
+
+              <div class="form-group">
+                <label for="reg-email">Email для приглашения *</label>
+                <input type="email" id="reg-email" class="form-control" placeholder="name@example.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="reg-contact">Telegram или Телефон *</label>
+                <input type="text" id="reg-contact" class="form-control" placeholder="@username или +7 (999) 000-00-00" required>
+              </div>
+
+              <div class="form-group">
+                <label for="reg-goal">Основная цель тренировок</label>
+                <select id="reg-goal" class="form-control">
+                  <option value="Набор мышечной массы">💪 Набор мышечной массы</option>
+                  <option value="Снижение веса и рельеф">🔥 Снижение веса и рельеф</option>
+                  <option value="Увеличение силы и силовое троеборье">🏋️ Увеличение силы (пауэрлифтинг)</option>
+                  <option value="Выносливость и кардио">🏃 Выносливость и бег</option>
+                  <option value="Геймификация и привычка тренироваться">🎮 Дисциплина и фан от геймификации</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Ваш уровень подготовки</label>
+                <div class="level-chips">
+                  <div class="level-chip active" data-level="Новичок">Новичок</div>
+                  <div class="level-chip" data-level="Любитель">Любитель</div>
+                  <div class="level-chip" data-level="Профи">Профи</div>
+                </div>
+                <input type="hidden" id="reg-level" value="Новичок">
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-submit-reg" id="btn-submit-registration">
+                Зарегистрироваться сейчас 🚀
+              </button>
+
+              <p class="form-disclaimer">
+                🔒 Ваши данные строго конфиденциальны. Без спама.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Modal -->
+  <div class="modal-overlay" id="success-modal">
+    <div class="modal-box">
+      <div class="modal-icon">🎉</div>
+      <h3>Вы успешно зарегистрированы!</h3>
+      <p>Ваша заявка принята и зафиксирована в системе. Мы свяжемся с вами и отправим доступ к приложению.</p>
+
+      <div class="modal-registered-meta">
+        <div>👤 <strong>Имя:</strong> <span id="modal-name">-</span></div>
+        <div>📧 <strong>Email:</strong> <span id="modal-email">-</span></div>
+        <div>📱 <strong>Контакт:</strong> <span id="modal-contact">-</span></div>
+        <div>⏰ <strong>Время регистрации:</strong> <span id="modal-time" style="color: var(--accent-gold-bright); font-weight: bold;">-</span></div>
+      </div>
+
+      <button class="btn btn-primary" style="width: 100%;" id="btn-close-modal">
+        Отлично, жду старта! 👍
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast" id="toast-notify">
+    <span id="toast-icon">✓</span>
+    <span id="toast-message">Сообщение</span>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="brand">
+          <div class="brand-icon">⚡</div>
+          <div class="brand-text">Elo<span>Fit</span></div>
+        </div>
+
+        <div class="footer-copy">
+          © 2026 EloFit Team. Все права защищены.
+        </div>
+
+        <div>
+          <a href="admin.html" class="footer-admin-link" id="link-footer-admin">
+            🔐 Панель администратора (база заявок)
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
