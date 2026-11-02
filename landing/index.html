@@ -34,11 +34,11 @@
       </ul>
 
       <div class="nav-actions">
-        <a href="admin.html" class="btn btn-admin" id="btn-header-admin" title="Панель администратора (база регистраций)">
-          📊 База заявок
-        </a>
+        <button class="btn btn-secondary" id="btn-header-login">
+          🔑 Войти в профиль
+        </button>
         <a href="#register" class="btn btn-primary" id="btn-nav-join">
-          Присоединиться 🚀
+          Ранний доступ 🚀
         </a>
       </div>
     </div>
@@ -355,12 +355,39 @@
     </div>
   </section>
 
+  <!-- User Login Modal -->
+  <div class="modal-overlay" id="login-modal">
+    <div class="modal-box" style="max-width: 440px; text-align: left;">
+      <h3 style="margin-bottom: 8px;">🔑 Вход в личный кабинет</h3>
+      <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px;">
+        Введите Email или контакт Telegram, указанный при регистрации.
+      </p>
+      <form id="user-login-form">
+        <div class="form-group">
+          <label for="login-identifier">Email или Telegram (@username)</label>
+          <input type="text" id="login-identifier" class="form-control" placeholder="name@example.com или @username" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px;" id="btn-submit-user-login">
+          Войти в профиль 🚀
+        </button>
+        <div style="text-align: center; margin-top: 16px;">
+          <a href="#register" id="link-switch-to-reg" style="font-size: 0.85rem; color: var(--accent-gold-bright);">
+            Ещё не зарегистрированы? Заполнить заявку →
+          </a>
+        </div>
+      </form>
+      <button class="btn btn-secondary" style="width: 100%; margin-top: 12px;" id="btn-close-login-modal">
+        Закрыть
+      </button>
+    </div>
+  </div>
+
   <!-- Success Modal -->
   <div class="modal-overlay" id="success-modal">
     <div class="modal-box">
       <div class="modal-icon">🎉</div>
       <h3>Вы успешно зарегистрированы!</h3>
-      <p>Ваша заявка принята и зафиксирована в системе. Мы свяжемся с вами и отправим доступ к приложению.</p>
+      <p>Ваша заявка принята и зафиксирована в системе. Личный кабинет атлета активирован!</p>
 
       <div class="modal-registered-meta">
         <div>👤 <strong>Имя:</strong> <span id="modal-name">-</span></div>
@@ -369,8 +396,11 @@
         <div>⏰ <strong>Время регистрации:</strong> <span id="modal-time" style="color: var(--accent-gold-bright); font-weight: bold;">-</span></div>
       </div>
 
-      <button class="btn btn-primary" style="width: 100%;" id="btn-close-modal">
-        Отлично, жду старта! 👍
+      <a href="account.html" class="btn btn-primary" style="width: 100%; margin-bottom: 10px; display: inline-flex;" id="btn-go-to-account">
+        🚀 Перейти в личный кабинет атлета
+      </a>
+      <button class="btn btn-secondary" style="width: 100%;" id="btn-close-modal">
+        Остаться на сайте
       </button>
     </div>
   </div>

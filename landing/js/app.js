@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initRegistrationForm();
   initCounter();
   initModal();
+  initUserLogin();
 });
 
 // Level selector chips
@@ -192,6 +193,7 @@ function initRegistrationForm() {
 
       // 2. Always persist locally in browser storage
       saveLocalRegistration(newRecord);
+      localStorage.setItem('elofit_current_user', JSON.stringify(newRecord));
 
       // 3. Send Telegram notification if configured
       triggerTelegramNotification(newRecord);
@@ -216,6 +218,74 @@ function initRegistrationForm() {
       submitBtn.innerHTML = originalBtnText;
     }
   });
+}
+
+// User Login Modal Handler
+function initUserLogin() {
+  const openBtn = document.getElementById('btn-header-login');
+  const modal = document.getElementById('login-modal');
+  const closeBtn = document.getElementById('btn-close-login-modal');
+  const switchLink = document.getElementById('link-switch-to-reg');
+  const form = document.getElementById('user-login-form');
+
+  if (openBtn && modal) {
+    openBtn.addEventListener('click', () => modal.classList.add('active'));
+  }
+
+  if (closeBtn && modal) {
+    closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+  }
+
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
+  }
+
+  if (switchLink && modal) {
+    switchLink.addEventListener('click', () => {
+      modal.classList.remove('active');
+      document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const query = (document.getElementById('login-identifier')?.value || '').toLowerCase().trim();
+      if (!query) return;
+
+      // 1. Fetch server registrations or read local
+      let list = [];
+      try {
+        const resp = await fetch('/api/registrations');
+        if (resp.ok) list = await resp.json();
+      } catch (_) {}
+
+      if (!list || list.length === 0) {
+        list = getLocalRegistrations();
+      }
+
+      // 2. Find matching user
+      const found = list.find(u => 
+        (u.email && u.email.toLowerCase() === query) ||
+        (u.contact && u.contact.toLowerCase() === query) ||
+        (u.name && u.name.toLowerCase() === query)
+      );
+
+      if (found) {
+        localStorage.setItem('elofit_current_user', JSON.stringify(found));
+        showToast('Вход выполнен! Переходим в личный кабинет...');
+        setTimeout(() => {
+          window.location.href = 'account.html';
+        }, 800);
+      } else {
+        showToast('Пользователь не найден. Зарегистрируйтесь ниже!', 'error');
+        modal.classList.remove('active');
+        document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
 }
 
 // Modal handling

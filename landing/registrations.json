@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "id": "reg_1793626503218_83jhc",
+    "name": "Алихан Смаилов",
+    "email": "alikhan@elofit.kz",
+    "contact": "@alikhan_fit",
+    "goal": "Набор мышечной массы",
+    "level": "Любитель",
+    "timestamp": "2026-11-02T13:35:03.217Z",
+    "timeFormatted": "02.11.2026 в 18:35:03",
+    "dateOnly": "02.11.2026",
+    "timeOnly": "18:35:03",
+    "status": "Новый"
+  }
+]

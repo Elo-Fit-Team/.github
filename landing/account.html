@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EloFit — Личный кабинет атлета</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="assets/images/beginner_split.jpg">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .dashboard-container {
+      max-width: 1180px;
+      margin: 30px auto;
+      padding: 0 20px 80px;
+    }
+
+    .dash-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .athlete-card-hero {
+      background: linear-gradient(135deg, rgba(18, 26, 44, 0.95), rgba(10, 15, 26, 0.95));
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 28px;
+      box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.8), 0 0 30px -10px var(--accent-gold-glow);
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dash-avatar {
+      width: 86px;
+      height: 86px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, var(--accent-gold), #EF4444);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      box-shadow: 0 0 25px var(--accent-gold-glow);
+    }
+
+    .dash-info h2 {
+      font-size: 2rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .founder-badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      background: rgba(245, 158, 11, 0.2);
+      color: var(--accent-gold-bright);
+      border: 1px solid var(--accent-gold);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .dash-info p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .elo-display-box {
+      text-align: right;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      border-radius: var(--radius-lg);
+      padding: 16px 24px;
+    }
+
+    .elo-display-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-gold-bright);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .elo-display-number {
+      font-size: 2.5rem;
+      font-weight: 900;
+      font-family: var(--font-heading);
+      color: #FFF;
+      line-height: 1.1;
+    }
+
+    /* Dashboard Grid */
+    .dash-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 28px;
+    }
+
+    .dash-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+    }
+
+    .dash-card-title {
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* RPG Stats Bars */
+    .rpg-stat-row {
+      margin-bottom: 18px;
+    }
+
+    .rpg-stat-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .rpg-bar-bg {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .rpg-bar-fill {
+      height: 100%;
+      border-radius: 10px;
+      transition: width 0.5s ease;
+    }
+
+    .rpg-bar-fill.str { background: linear-gradient(90deg, #F43F5E, #FB7185); }
+    .rpg-bar-fill.agi { background: linear-gradient(90deg, var(--accent-cyan), #38BDF8); }
+    .rpg-bar-fill.sta { background: linear-gradient(90deg, var(--accent-emerald), #34D399); }
+
+    /* Interactive Quests / Workouts */
+    .quest-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      transition: var(--transition);
+    }
+
+    .quest-item:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--border-glass-hover);
+    }
+
+    .quest-item.completed {
+      opacity: 0.5;
+      border-color: var(--accent-emerald);
+      text-decoration: line-through;
+    }
+
+    .quest-info h4 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .quest-info p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .quest-reward {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent-gold-bright);
+    }
+
+    .btn-quest-check {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold-bright);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-quest-check:hover {
+      background: var(--accent-gold);
+      color: #000;
+    }
+
+    @media (max-width: 860px) {
+      .athlete-card-hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .dash-avatar {
+        margin: 0 auto;
+      }
+      .elo-display-box {
+        text-align: center;
+      }
+      .dash-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="nav-wrapper">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">Elo<span>Fit</span></div>
+        <span class="brand-badge">ПРОФИЛЬ</span>
+      </a>
+
+      <div class="nav-actions">
+        <a href="index.html" class="btn btn-secondary">
+          ← На главную
+        </a>
+        <button class="btn btn-secondary" id="btn-user-logout" style="color: var(--accent-rose);">
+          Выйти из аккаунта
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="dashboard-container">
+
+    <!-- Athlete Hero Header -->
+    <div class="athlete-card-hero">
+      <div class="dash-avatar" id="dash-avatar-icon">⚔️</div>
+
+      <div class="dash-info">
+        <h2>
+          <span id="dash-user-name">Атлет</span>
+          <span class="founder-badge">FOUNDER #<span id="dash-user-id">1</span></span>
+        </h2>
+        <p>
+          Цель: <strong id="dash-user-goal" style="color: var(--text-primary);">-</strong> • 
+          Уровень: <strong id="dash-user-level" style="color: #60A5FA;">Новичок</strong>
+        </p>
+        <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 6px;">
+          Зарегистрирован: <span id="dash-user-time" style="color: var(--accent-gold-bright);">-</span>
+        </p>
+      </div>
+
+      <div class="elo-display-box">
+        <div class="elo-display-label">Рейтинг ELO</div>
+        <div class="elo-display-number" id="dash-user-elo">1,250</div>
+        <div style="font-size: 0.75rem; color: var(--accent-emerald); font-weight: 600; margin-top: 4px;">
+          +250 приветственный бонус Founder
+        </div>
+      </div>
+    </div>
+
+    <!-- Dashboard Content Grid -->
+    <div class="dash-grid">
+
+      <!-- Left Column: Character Stats -->
+      <div class="dash-card">
+        <div class="dash-card-title">
+          <span>🛡️ Атрибуты персонажа</span>
+          <span style="font-size: 0.8rem; color: var(--accent-gold-bright); font-weight: 600;">УРОВЕНЬ 1</span>
+        </div>
+
+        <div class="rpg-stat-row">
+          <div class="rpg-stat-meta">
+            <span>Сила (Strength)</span>
+            <span id="stat-str-val">35 / 100</span>
+          </div>
+          <div class="rpg-bar-bg">
+            <div class="rpg-bar-fill str" id="stat-str-bar" style="width: 35%;"></div>
+          </div>
+        </div>
+
+        <div class="rpg-stat-row">
+          <div class="rpg-stat-meta">
+            <span>Ловкость (Agility)</span>
+            <span id="stat-agi-val">28 / 100</span>
+          </div>
+          <div class="rpg-bar-bg">
+            <div class="rpg-bar-fill agi" id="stat-agi-bar" style="width: 28%;"></div>
+          </div>
+        </div>
+
+        <div class="rpg-stat-row">
+          <div class="rpg-stat-meta">
+            <span>Выносливость (Stamina)</span>
+            <span id="stat-sta-val">42 / 100</span>
+          </div>
+          <div class="rpg-bar-bg">
+            <div class="rpg-bar-fill sta" id="stat-sta-bar" style="width: 42%;"></div>
+          </div>
+        </div>
+
+        <div style="margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border-glass);">
+          <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">Текущая лига:</div>
+          <div style="display:flex; align-items:center; gap: 10px; font-weight: 700; font-size: 1.05rem;">
+            <span>🥉</span>
+            <span>Бронзовая Лига Первопроходцев (Дивизион I)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Today's Quests & Workouts -->
+      <div class="dash-card">
+        <div class="dash-card-title">
+          <span>🎯 Стартовые квесты и тренировки</span>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">На сегодня</span>
+        </div>
+
+        <!-- Quest 1 -->
+        <div class="quest-item" id="quest-1">
+          <div class="quest-info">
+            <h4>Вводная разминка и тест формы</h4>
+            <p>15 минут суставной гимнастики + планка 1 мин</p>
+          </div>
+          <div style="text-align: right;">
+            <div class="quest-reward">+15 ELO • +50 XP</div>
+            <button class="btn-quest-check" onclick="completeQuest('quest-1', 15, 'sta')">
+              Выполнить ✓
+            </button>
+          </div>
+        </div>
+
+        <!-- Quest 2 -->
+        <div class="quest-item" id="quest-2">
+          <div class="quest-info">
+            <h4>Базовый силовой сет</h4>
+            <p>Отжимания 3x12 + приседания 3x15</p>
+          </div>
+          <div style="text-align: right;">
+            <div class="quest-reward">+25 ELO • +75 XP</div>
+            <button class="btn-quest-check" onclick="completeQuest('quest-2', 25, 'str')">
+              Выполнить ✓
+            </button>
+          </div>
+        </div>
+
+        <!-- Quest 3 -->
+        <div class="quest-item" id="quest-3">
+          <div class="quest-info">
+            <h4>Подтвердить Telegram для лиг</h4>
+            <p>Присоединиться к закрытому чату первопроходцев</p>
+          </div>
+          <div style="text-align: right;">
+            <div class="quest-reward">+10 ELO • +30 XP</div>
+            <button class="btn-quest-check" onclick="completeQuest('quest-3', 10, 'agi')">
+              Выполнить ✓
+            </button>
+          </div>
+        </div>
+
+        <div style="margin-top: 20px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: var(--radius-md); padding: 14px; font-size: 0.84rem; color: #93C5FD;">
+          💡 <strong>Совет:</strong> Выполняйте ежедневные квесты, чтобы повышать ELO и открывать эксклюзивные программы тренировок.
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast-notify">
+    <span id="toast-icon">✓</span>
+    <span id="toast-message">Сообщение</span>
+  </div>
+
+  <script>
+    // Initialize Dashboard with Current User Data
+    document.addEventListener('DOMContentLoaded', () => {
+      let user = null;
+      try {
+        const raw = localStorage.getItem('elofit_current_user');
+        if (raw) user = JSON.parse(raw);
+      } catch (_) {}
+
+      // If no logged in user, look for the latest registration in localStorage or redirect
+      if (!user) {
+        try {
+          const listRaw = localStorage.getItem('elofit_registrations');
+          const list = listRaw ? JSON.parse(listRaw) : [];
+          if (list.length > 0) {
+            user = list[0]; // most recent
+            localStorage.setItem('elofit_current_user', JSON.stringify(user));
+          }
+        } catch (_) {}
+      }
+
+      if (!user) {
+        alert('Для входа в личный кабинет пожалуйста зарегистрируйтесь или введите email.');
+        window.location.href = 'index.html#register';
+        return;
+      }
+
+      // Populate user data
+      document.getElementById('dash-user-name').textContent = user.name || 'Атлет';
+      document.getElementById('dash-user-goal').textContent = user.goal || 'Общая подготовка';
+      document.getElementById('dash-user-level').textContent = user.level || 'Новичок';
+      document.getElementById('dash-user-time').textContent = user.timeFormatted || 'Только что';
+
+      // Load or set starting ELO
+      let elo = parseInt(localStorage.getItem('elofit_elo_' + (user.id || 'default'))) || 1250;
+      document.getElementById('dash-user-elo').textContent = elo.toLocaleString();
+
+      // Logout handler
+      document.getElementById('btn-user-logout').addEventListener('click', () => {
+        localStorage.removeItem('elofit_current_user');
+        window.location.href = 'index.html';
+      });
+    });
+
+    // Complete Interactive Quest
+    function completeQuest(id, eloReward, statType) {
+      const el = document.getElementById(id);
+      if (!el || el.classList.contains('completed')) return;
+
+      el.classList.add('completed');
+      const btn = el.querySelector('button');
+      if (btn) {
+        btn.textContent = 'Выполнено ✓';
+        btn.disabled = true;
+      }
+
+      let user = null;
+      try {
+        user = JSON.parse(localStorage.getItem('elofit_current_user') || '{}');
+      } catch (_) {}
+
+      const userKey = 'elofit_elo_' + (user.id || 'default');
+      let currentElo = parseInt(localStorage.getItem(userKey)) || 1250;
+      currentElo += eloReward;
+      localStorage.setItem(userKey, currentElo.toString());
+
+      document.getElementById('dash-user-elo').textContent = currentElo.toLocaleString();
+
+      // Bump stat
+      if (statType === 'str') {
+        bumpStat('stat-str-bar', 'stat-str-val', 5);
+      } else if (statType === 'agi') {
+        bumpStat('stat-agi-bar', 'stat-agi-val', 5);
+      } else if (statType === 'sta') {
+        bumpStat('stat-sta-bar', 'stat-sta-val', 5);
+      }
+
+      showToast(`+${eloReward} ELO получено! Рейтинг обновлен 🔥`);
+    }
+
+    function bumpStat(barId, valId, inc) {
+      const bar = document.getElementById(barId);
+      const val = document.getElementById(valId);
+      if (!bar || !val) return;
+
+      let current = parseInt(bar.style.width) || 30;
+      current = Math.min(100, current + inc);
+      bar.style.width = current + '%';
+      val.textContent = `${current} / 100`;
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast-notify');
+      const msgEl = document.getElementById('toast-message');
+      if (!toast || !msgEl) return;
+      msgEl.textContent = message;
+      toast.className = 'toast success show';
+      setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+  </script>
+</body>
+</html>
